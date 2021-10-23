@@ -215,11 +215,6 @@ bool DL_Jww::readDxfGroups(FILE *fp, DL_CreationInterface* creationInterface,
         if (ok) {
             //std::cerr << groupCode << "\n";
             //std::cerr << groupValue << "\n";
-            if(strcmp(groupValue, "CIRCLE") == 0)
-            {
-                std::cout << groupCode << "\n";
-                std::cout << groupValue << "\n";
-            }
             line+=2;
             processDXFGroup(creationInterface, groupCode, groupValue);
         } else {

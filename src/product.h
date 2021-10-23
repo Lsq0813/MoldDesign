@@ -1,13 +1,12 @@
 #pragma once
 
-#include "dl_creationinterface.h"
+#include "jwwlib/dl_creationinterface.h"
+#include "component.h"
 
-class DL_CreationInterfaceChild
+class Product
 : public DL_CreationInterface
 {
 public:
-    DL_CreationInterfaceChild() {}
-    ~DL_CreationInterfaceChild() {}
 
     void addLayer(const DL_LayerData& data){}
 
@@ -32,7 +31,7 @@ public:
     void addArc(const DL_ArcData& data){}
 
     /** Called for every circle */
-    void addCircle(const DL_CircleData& data){}
+    void addCircle(const DL_CircleData& data);
 
     /** Called for every ellipse */
     void addEllipse(const DL_EllipseData& data){}
@@ -189,7 +188,7 @@ public:
       * Called when a SEQEND occurs (when a POLYLINE or ATTRIB is done)
       */
      void endSequence(){}
-private:
 
+ public:
+    ComponentList m_complist;
 };
-
