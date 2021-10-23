@@ -1,6 +1,9 @@
 #include <iostream>
+#include "jwwlib/dl_jww-copy.h"
+#include "draw.h"
+#include "component.h"
 #include "product.h"
-#include "dl_jww-copy.h"
+#include "mold.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,13 +12,16 @@ int main(int argc, char *argv[])
         std::cout<<"file path as parameter\n";
         return 1;
     }
-    std::cout<<"MoldDesign start ...\n";
-    product p;
-    DL_Jww b;
     string file(argv[1]);
+
+    Product p;
+    DL_Jww b;
     b.in(file, &p);
-    p.print();
-    std::cout<<"MoldDesign end\n";
+
+    Mold m(&(p.m_complist));
+    m.design();
+
+    Draw d1("mold", &(m.m_mold));
+    d1.start();
     return 0;
 }
-

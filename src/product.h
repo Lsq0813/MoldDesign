@@ -1,24 +1,12 @@
-#ifndef PRODUCT_H
-#define PRODUCT_H
+#pragma once
 
-#include <vector>
-#include "dl_creationinterface.h"
+#include "jwwlib/dl_creationinterface.h"
+#include "component.h"
 
-#define CircleData 0
-
-struct component
-{
-    int type;
-    const void *entities;
-    component(int t, const void *e):type(t), entities(e){}
-};
-
-class product
+class Product
 : public DL_CreationInterface
 {
 public:
-    product() {}
-    ~product() {}
 
     void addLayer(const DL_LayerData& data){}
 
@@ -201,10 +189,6 @@ public:
       */
      void endSequence(){}
 
-     void print();
-
-private:
-     std::vector<component> components;
+ public:
+    ComponentList m_complist;
 };
-
-#endif
