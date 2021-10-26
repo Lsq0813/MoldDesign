@@ -4,6 +4,7 @@
 #include "component.h"
 #include "product.h"
 #include "mold.h"
+#include "unistd.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,7 +22,16 @@ int main(int argc, char *argv[])
     Mold m(&(p.m_complist));
     m.design();
 
-    Draw d1("mold", &(m.m_mold));
-    d1.start();
+    int pid = fork();
+    if(pid == 0)
+    {
+        Draw d1("mold", &(m.m_mold));
+        d1.start();
+    }
+    else
+    {
+        Draw d2("product", &(p.m_complist));
+        d2.start();
+    }
     return 0;
 }
